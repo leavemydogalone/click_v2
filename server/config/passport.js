@@ -3,28 +3,40 @@ const LocalStrategy = require("passport-local").Strategy;
 const connection = require("./database");
 const User = require("../models/User");
 
-const customFields = {
-  usernameField: "email",
-};
+const customFields = {};
 
-const verifyCallback = (username, passowerd, done) => {
+const verifyCallback = (username, password, done) => {
   User.findOne({ username: username })
     .then((user) => {
       if (!user) {
-        return cb(null, false);
+        return done(null, false);
       }
 
       const isValid = validPassword(password, user.hash, user.salt);
 
       if (isValid) {
-        return cb(null, user);
+        return done(null, user);
       } else {
-        return cb(null, false);
+        return done(null, false);
       }
     })
     .catch((err) => {
-      cb(err);
+      done(err);
     });
 };
 
-// const strategy = new LocalStrategy();
+const strategy = new LocalStrategy(customFields, verifyCallback);
+
+passport.use(strategy);
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((userId, done) => {
+  User.findbyId(userId)
+    .then((user) => {
+      done(null, user);
+    })
+    .catch((err) => done(err));
+});

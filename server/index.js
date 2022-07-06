@@ -43,11 +43,11 @@ require("./config/passport.js");
 io.use(wrap(passport.initialize()));
 io.use(wrap(passport.session()));
 
-// "Routes"
-io.onConnection = (socket) => {};
-
 io.on("connection", (socket) => {
   console.log("a user connected");
+
+  // "Routes"
+  io.onConnection = (socket) => {};
 
   socket.on("disconnect", () => {
     console.log("user disconnected");
