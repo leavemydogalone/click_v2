@@ -3,9 +3,22 @@ const app = express();
 const http = require("http");
 const server = http.createServer(app);
 const mongoose = require("mongoose");
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
+const passport = require("passport");
+const crypto = require("crypto");
 const dotenv = require("dotenv");
 
 dotenv.config();
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 mongoose
   .connect(process.env.MONGO_URL)
