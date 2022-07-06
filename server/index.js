@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const http = require("http");
 const server = http.createServer(app);
-const mongoose = require("mongoose");
+const connection = require("./config/database");
 const MongoStore = require("connect-mongo");
 const session = require("express-session");
 const passport = require("passport");
@@ -36,17 +36,13 @@ io.use(
     })
   )
 );
-
-mongoose
-  .connect(process.env.MONGO_URL)
-  .then(() => console.log("DBConnection Successful"))
-  .catch((err) => {
-    console.log(err);
-  });
+io.use(wrap(passport.initialize()));
+io.use(wrap(passport.session()));
+io.onConnection = (socket) => {};
 
 // Passport
 
-require("./config/passport");
+require("./config/passport.js");
 
 io.on("connection", (socket) => {
   console.log("a user connected");
