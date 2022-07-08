@@ -46,7 +46,7 @@ io.use(wrap(passport.session()));
 io.on("connection", (socket) => {
   console.log("a user connected");
 
-  // "Routes"
+  // "Routes" for the different listeners
   io.onConnection = (socket) => {};
 
   socket.on("disconnect", () => {
