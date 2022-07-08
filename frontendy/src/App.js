@@ -26,7 +26,7 @@ function App() {
       <button
         className="btn"
         onClick={() => {
-          socket.emit("ping");
+          socket.emit("userObj", { username: "jim", password: "heyheyhey" });
         }}
       >
         hi

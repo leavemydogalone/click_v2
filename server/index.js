@@ -47,7 +47,9 @@ io.on("connection", (socket) => {
   console.log("a user connected");
 
   // "Routes" for the different listeners
-  io.onConnection = (socket) => {};
+  socket.on("userObj", (userObj) => {
+    console.log(userObj);
+  });
 
   socket.on("disconnect", () => {
     console.log("user disconnected");
