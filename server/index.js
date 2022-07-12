@@ -5,14 +5,30 @@ const server = http.createServer(app);
 const connection = require("./config/database");
 const MongoStore = require("connect-mongo");
 const session = require("express-session");
+const authRoute = require("./routes/auth");
 const passport = require("passport");
 const crypto = require("crypto");
 const dotenv = require("dotenv");
-const userHandler = require("./handlers/userHandler");
 
 dotenv.config();
 
-const io = require("socket.io")(process.env.PORT, {
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24,
+    },
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use("/auth", authRoute);
+
+const io = require("socket.io")(server, {
   cors: {
     origin: "http://localhost:3000",
     methods: ["GET", "POST"],
@@ -56,4 +72,10 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log("user disconnected");
   });
+});
+
+server.listen(4000, () => {
+  console.log(
+    `application is running at: http://localhost:${process.env.PORT}`
+  );
 });
