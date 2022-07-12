@@ -8,6 +8,7 @@ const session = require("express-session");
 const passport = require("passport");
 const crypto = require("crypto");
 const dotenv = require("dotenv");
+const userHandler = require("./handlers/userHandler");
 
 dotenv.config();
 
@@ -43,13 +44,14 @@ require("./config/passport.js");
 io.use(wrap(passport.initialize()));
 io.use(wrap(passport.session()));
 
+const registerUserHandlers = require("./handlers/userHandler");
+
 io.on("connection", (socket) => {
   console.log("a user connected");
 
   // "Routes" for the different listeners
-  socket.on("userObj", (userObj) => {
-    console.log(userObj);
-  });
+
+  registerUserHandlers(io, socket);
 
   socket.on("disconnect", () => {
     console.log("user disconnected");

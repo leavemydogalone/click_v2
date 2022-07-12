@@ -1,8 +1,12 @@
 const User = require("../models/User");
-function userRegister() {}
+
 module.exports = (io, socket) => {
-  const userRegister = () => {};
+  const userRegister = (userObj) => {
+    console.log(userObj);
+  };
   const userSignIn = () => {};
   const userUpdateCredentials = () => {};
   const userUpdateClick = () => {};
+
+  socket.on("userObj", userRegister);
 };
