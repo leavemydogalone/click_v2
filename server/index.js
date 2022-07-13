@@ -26,7 +26,18 @@ app.use(sessionMiddleware);
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use((req, res, next) => {
+  console.log(req.session);
+  console.log(req.user);
+  next();
+});
+
 app.use(express.json());
+
+app.use("/", (req, res) => {
+  res.status(201).json("hi");
+});
+
 app.use("/auth", authRoute);
 
 const io = require("socket.io")(server, {
@@ -57,6 +68,11 @@ io.on("connection", (socket) => {
   // "Routes" for the different listeners
 
   registerUserHandlers(io, socket);
+
+  const session = socket.request.session;
+  console.log(`saving sid ${socket.id} in session ${session.id}`);
+  session.socketId = socket.id;
+  session.save();
 
   socket.on("disconnect", () => {
     console.log("user disconnected");
