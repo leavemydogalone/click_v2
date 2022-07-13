@@ -12,20 +12,21 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-      maxAge: 1000 * 60 * 60 * 24,
-    },
-  })
-);
+const sessionMiddleware = session({
+  secret: process.env.SESSION_SECRET,
+  store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24,
+  },
+});
+
+app.use(sessionMiddleware);
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(express.json());
 app.use("/auth", authRoute);
 
 const io = require("socket.io")(server, {
@@ -39,20 +40,8 @@ const io = require("socket.io")(server, {
 const wrap = (middleware) => (socket, next) =>
   middleware(socket.request, {}, next);
 
-// Session
-io.use(
-  wrap(
-    session({
-      secret: process.env.SESSION_SECRET,
-      store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
-      resave: false,
-      saveUninitialized: true,
-      cookie: {
-        maxAge: 1000 * 60 * 60 * 24,
-      },
-    })
-  )
-);
+// Socket Session
+io.use(wrap(sessionMiddleware));
 
 // Passport
 require("./config/passport.js");
