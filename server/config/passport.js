@@ -1,6 +1,5 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-// const connection = require("./database");
 const User = require("../models/User");
 const validPassword = require("../lib/passwordUtils").validPassword;
 
@@ -14,7 +13,6 @@ const verifyCallback = (username, password, done) => {
       }
 
       const isValid = validPassword(password, user.hash, user.salt);
-
       if (isValid) {
         return done(null, user);
       } else {
@@ -35,9 +33,11 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((userId, done) => {
-  User.findbyId(userId)
+  User.findById(userId)
     .then((user) => {
       done(null, user);
     })
-    .catch((err) => done(err));
+    .catch((err) => {
+      done(err);
+    });
 });
