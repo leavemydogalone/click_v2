@@ -22,16 +22,27 @@ function App() {
   }, []);
 
   const connectToSession = async () => {
-    fetch(process.env.REACT_APP_SERVER_PORT)
-      .then((res) => console.log(res))
-      .then(
-        (res) => {
-          console.log(res);
-        },
-        (error) => {
-          console.log(error);
+    console.log(`${process.env.REACT_APP_SERVER_PORT}/auth/login`);
+    try {
+      const rawResponse = await fetch(
+        `${process.env.REACT_APP_SERVER_PORT}/auth/login`,
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: "guydog",
+            password: "dog2",
+          }),
         }
       );
+      const data = await rawResponse.json();
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -39,6 +50,7 @@ function App() {
       <button className="btn" onClick={connectToSession}>
         hi
       </button>
+
       <Login />
     </div>
   );

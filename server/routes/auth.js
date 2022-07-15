@@ -6,7 +6,7 @@ const connection = require("../config/database");
 
 router.post("/login", passport.authenticate("local"), (req, res, next) => {
   console.log("login success");
-  res.status(201).json("hi");
+  res.status(201).json("you logged in");
 });
 
 router.post("/register", async (req, res, next) => {

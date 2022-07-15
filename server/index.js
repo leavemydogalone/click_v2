@@ -2,49 +2,55 @@ const express = require("express");
 const app = express();
 const http = require("http");
 const server = http.createServer(app);
+var cors = require("cors");
 const connection = require("./config/database");
 const MongoStore = require("connect-mongo");
 const session = require("express-session");
 const authRoute = require("./routes/auth");
 const passport = require("passport");
 const crypto = require("crypto");
-const dotenv = require("dotenv");
 
+const dotenv = require("dotenv");
 dotenv.config();
+
+const corsOptions = {
+  origin: "http://localhost:3000",
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 const sessionMiddleware = session({
   secret: process.env.SESSION_SECRET,
   store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
-  resave: false,
-  saveUninitialized: true,
+  resave: true,
+  saveUninitialized: false,
   cookie: {
     maxAge: 1000 * 60 * 60 * 24,
   },
 });
 
+app.set("trust proxy", 1);
 app.use(sessionMiddleware);
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use((req, res, next) => {
-  console.log(req.session);
-  console.log(req.user);
   next();
 });
 
 app.use(express.json());
 
-app.use("/", (req, res) => {
-  res.status(201).json("hi");
+app.post("/", (req, res) => {
+  (req.session.thing = "hi"), res.status(200);
 });
 
 app.use("/auth", authRoute);
 
+//----------- SOCKET GOES BELOW HERE --------//
+
 const io = require("socket.io")(server, {
-  cors: {
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
-  },
+  cors: corsOptions,
 });
 
 // wrap required to use middleware with socket.io
@@ -69,10 +75,11 @@ io.on("connection", (socket) => {
 
   registerUserHandlers(io, socket);
 
-  const session = socket.request.session;
-  console.log(`saving sid ${socket.id} in session ${session.id}`);
-  session.socketId = socket.id;
-  session.save();
+  // session handling for socket
+  // const session = socket.request.session;
+  // console.log(`saving sid ${socket.id} in session ${session.id}`);
+  // session.socketId = socket.id;
+  // session.save();
 
   socket.on("disconnect", () => {
     console.log("user disconnected");
