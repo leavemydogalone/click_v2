@@ -21,13 +21,15 @@ function App() {
     };
   }, []);
 
-  const connectToSession = async () => {
+  const login = async () => {
     console.log(`${process.env.REACT_APP_SERVER_PORT}/auth/login`);
     try {
       const rawResponse = await fetch(
         `${process.env.REACT_APP_SERVER_PORT}/auth/login`,
         {
           method: "POST",
+          mode: "cors",
+          credentials: "include",
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
@@ -47,7 +49,7 @@ function App() {
 
   return (
     <div className="App min-h-screen">
-      <button className="btn" onClick={connectToSession}>
+      <button className="btn" onClick={login}>
         hi
       </button>
 

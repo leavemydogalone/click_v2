@@ -23,14 +23,18 @@ app.use(cors(corsOptions));
 const sessionMiddleware = session({
   secret: process.env.SESSION_SECRET,
   store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
-  resave: true,
-  saveUninitialized: false,
+  resave: false,
+  saveUninitialized: true,
   cookie: {
     maxAge: 1000 * 60 * 60 * 24,
   },
 });
 
-app.set("trust proxy", 1);
+if (app.get("env") === "production") {
+  app.set("trust proxy", 1); // trust first proxy
+  session.cookie.secure = true; // serve secure cookies
+}
+
 app.use(sessionMiddleware);
 app.use(passport.initialize());
 app.use(passport.session());
