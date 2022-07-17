@@ -7,7 +7,14 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  console.log(currentUser);
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    console.log(loggedInUser);
+    if (loggedInUser) {
+      setCurrentUser(loggedInUser);
+      console.log(currentUser);
+    }
+  }, []);
 
   return (
     <AuthContext.Provider value={{ currentUser, setCurrentUser }}>

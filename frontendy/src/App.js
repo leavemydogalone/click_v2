@@ -9,6 +9,8 @@ function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);
   const { currentUser } = useContext(AuthContext);
 
+  // let cook = document.cookie;
+  // console.log(cook);
   useEffect(() => {
     socket.on("connect", () => {
       setIsConnected(true);
@@ -25,9 +27,10 @@ function App() {
     };
   }, []);
 
+  // console.log(currentUser);
   return (
     <div className="App min-h-screen">
-      {/* {currentUser} */}
+      {currentUser}
       <Login />
     </div>
   );
