@@ -65,21 +65,20 @@ io.use(wrap(passport.session()));
 
 io.use((socket, next) => {
   if (socket.request.user) {
-    console.log("thers a user");
     next();
   } else {
     next(new Error("unauthorized"));
   }
 });
 
-// const registerUserHandlers = require("./handlers/userHandler");
+const registerUserHandlers = require("./handlers/userHandler");
 
 io.on("connection", (socket) => {
   console.log("a user connected");
 
   // "Routes" for the different listeners
 
-  // registerUserHandlers(io, socket);
+  registerUserHandlers(io, socket);
 
   socket.on("disconnect", () => {
     console.log("user disconnected");

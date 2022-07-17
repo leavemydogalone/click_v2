@@ -1,15 +1,18 @@
-import React, { useState } from "react";
-import login from "../helpers/loginHelpers";
+import React, { useState, useContext } from "react";
+import { login } from "../helpers/loginHelpers";
+import { AuthContext } from "../utils/AuthProvider";
 
 export default function Login() {
   const [username, setUsername] = useState("guydog");
   const [password, setPassword] = useState("dog2");
   const [loading, setLoading] = useState(false);
 
+  const { setCurrentUser } = useContext(AuthContext);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const logged = await login(username, password);
+    const logged = await login(username, password, setCurrentUser);
     setLoading(false);
   };
 
@@ -32,7 +35,6 @@ export default function Login() {
           Password
         </label>
         <input
-          // type="text"
           placeholder="Type here"
           className="input input-bordered w-full max-w-xs "
           type="password"
@@ -44,7 +46,9 @@ export default function Login() {
         <div className="warning"></div>
         <button className="btn block mt-6">Login</button>
         {loading && (
-          <div className="thing absolute w-full h-full left-0 top-0 bg-white opacity-50"></div>
+          <div className="thing absolute w-full h-full left-0 top-0 bg-white opacity-50">
+            Logging In...
+          </div>
         )}
       </form>
     </>

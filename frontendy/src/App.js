@@ -1,15 +1,18 @@
-import { useState, useEffect } from "react";
-import Login from "./components/Login";
+import { useState, useEffect, useContext } from "react";
 import io from "socket.io-client";
+import Login from "./components/Login";
+import { AuthContext } from "./utils/AuthProvider";
+
 const socket = io(process.env.REACT_APP_SERVER_PORT, { withCredentials: true });
 
 function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);
+  const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     socket.on("connect", () => {
       setIsConnected(true);
-      console.log("connected");
+      console.log("socket connected");
     });
 
     socket.on("disconnect", () => {
@@ -24,6 +27,7 @@ function App() {
 
   return (
     <div className="App min-h-screen">
+      {/* {currentUser} */}
       <Login />
     </div>
   );
