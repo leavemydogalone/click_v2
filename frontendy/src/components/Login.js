@@ -15,7 +15,7 @@ export default function Login() {
 
   return (
     <>
-      <form className="loginForm p-8" onSubmit={handleSubmit}>
+      <form className="loginForm p-8 relative" onSubmit={handleSubmit}>
         <label htmlFor="username" className="label block">
           Username
         </label>
@@ -43,6 +43,9 @@ export default function Login() {
         />
         <div className="warning"></div>
         <button className="btn block mt-6">Login</button>
+        {loading && (
+          <div className="thing absolute w-full h-full left-0 top-0 bg-white opacity-50"></div>
+        )}
       </form>
     </>
   );

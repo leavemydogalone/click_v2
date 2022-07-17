@@ -8,7 +8,7 @@ const MongoStore = require("connect-mongo");
 const session = require("express-session");
 const authRoute = require("./routes/auth");
 const passport = require("passport");
-const crypto = require("crypto");
+require("./config/passport.js");
 
 const dotenv = require("dotenv");
 dotenv.config();
@@ -39,10 +39,6 @@ app.use(sessionMiddleware);
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use((req, res, next) => {
-  next();
-});
-
 app.use(express.json());
 
 app.post("/", (req, res) => {
@@ -63,17 +59,13 @@ const wrap = (middleware) => (socket, next) =>
 
 // Socket Session
 io.use(wrap(sessionMiddleware));
-
-// Passport
-require("./config/passport.js");
-
 io.use(wrap(passport.initialize()));
 io.use(wrap(passport.session()));
 
 const registerUserHandlers = require("./handlers/userHandler");
 
 io.on("connection", (socket) => {
-  console.log("a user connected");
+  // console.log("a user connected");
 
   // "Routes" for the different listeners
 
@@ -83,14 +75,13 @@ io.on("connection", (socket) => {
   // const session = socket.request.session;
   // console.log(`saving sid ${socket.id} in session ${session.id}`);
   // session.socketId = socket.id;
-  // session.save();
 
-  socket.on("disconnect", () => {
-    console.log("user disconnected");
-  });
+  // socket.on("disconnect", () => {
+  //   console.log("user disconnected");
+  // });
 });
 
-server.listen(4000, () => {
+server.listen(4001, () => {
   console.log(
     `application is running at: http://localhost:${process.env.PORT}`
   );
