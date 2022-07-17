@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Login from "./components/Login";
 import io from "socket.io-client";
-const socket = io(process.env.REACT_APP_SERVER_PORT);
+const socket = io(process.env.REACT_APP_SERVER_PORT, { withCredentials: true });
 
 function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);
@@ -9,6 +9,7 @@ function App() {
   useEffect(() => {
     socket.on("connect", () => {
       setIsConnected(true);
+      console.log("connected");
     });
 
     socket.on("disconnect", () => {

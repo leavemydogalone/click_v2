@@ -6,7 +6,8 @@ const connection = require("../config/database");
 
 router.post("/login", passport.authenticate("local"), (req, res, next) => {
   console.log("login success");
-  console.log(req.session.passport.user);
+  req.session.authenticated = true;
+
   res.status(201).json({ userId: req.session.passport.user });
 });
 
