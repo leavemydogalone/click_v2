@@ -30,7 +30,7 @@ function App() {
   // console.log(currentUser);
   return (
     <div className="App min-h-screen">
-      {currentUser}
+      {currentUser && currentUser}
       <Login />
     </div>
   );

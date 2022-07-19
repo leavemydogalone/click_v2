@@ -18,9 +18,9 @@ export async function login(username, password, setCurrentUser) {
     );
 
     const data = await rawResponse.json();
-    setCurrentUser(data);
-    console.log(data);
+    setCurrentUser(data.userId);
     localStorage.setItem("user", data.userId);
+    console.log(data);
   } catch (err) {
     console.log(err);
   }
