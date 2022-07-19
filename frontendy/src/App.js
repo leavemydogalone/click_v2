@@ -2,8 +2,12 @@ import { useState, useEffect, useContext } from "react";
 import io from "socket.io-client";
 import Login from "./components/Login";
 import { AuthContext } from "./utils/AuthProvider";
+import GameContainer from "./components/GameContainer";
+import Menu from "./components/Menu";
 
 const socket = io(process.env.REACT_APP_SERVER_PORT, { withCredentials: true });
+
+// Top level. Will handle user info and connecting to the socket.
 
 function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);
@@ -30,8 +34,8 @@ function App() {
   // console.log(currentUser);
   return (
     <div className="App min-h-screen">
-      {currentUser && currentUser}
-      <Login />
+      <Menu />
+      <GameContainer />
     </div>
   );
 }
