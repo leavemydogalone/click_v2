@@ -13,10 +13,10 @@ export const AuthProvider = ({ children }) => {
     console.log(loggedInUser);
     if (loggedInUser) {
       setCurrentUser(loggedInUser);
-      console.log(currentUser);
     }
   }, []);
 
+  console.log(currentUser);
   return (
     <AuthContext.Provider value={{ currentUser, setCurrentUser }}>
       {children}
