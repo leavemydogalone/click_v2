@@ -33,7 +33,7 @@ function App() {
 
   // console.log(currentUser);
   return (
-    <div className="App min-h-screen">
+    <div className="App min-h-screen grid grid-rows-[auto,_1fr]">
       <Menu />
       <GameContainer />
     </div>
