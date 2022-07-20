@@ -4,7 +4,7 @@ import Login from "./Login";
 export default function Menu() {
   const [popUp, setPopUp] = useState(null);
 
-  function handlePopUp(prevState) {}
+  function HandleLoginSuccess() {}
 
   return (
     <div className="navbar bg-base-100">
@@ -31,7 +31,9 @@ export default function Menu() {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a onClick={() => setPopUp(<Login />)}>Login</a>
+              <span onClick={() => setPopUp(<Login setPopUp={setPopUp} />)}>
+                Login
+              </span>
             </li>
           </ul>
         </div>
@@ -40,22 +42,6 @@ export default function Menu() {
         <a className="btn btn-ghost normal-case text-xl">Clicker</a>
       </div>
       <div className="navbar-end">
-        <button className="btn btn-ghost btn-circle">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            />
-          </svg>
-        </button>
         <button className="btn btn-ghost btn-circle">
           <div className="indicator">
             <svg
@@ -76,9 +62,18 @@ export default function Menu() {
           </div>
         </button>
       </div>
-      <div className="popUpContainer max-w-screen absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
-        {popUp}
-      </div>
+      {/* conditionally rendered if there is a popup */}
+      {popUp && (
+        <div className="card indicator overflow-visible w-96 bg-base-100 shadow-xl max-w-screen position-center-absolute">
+          <span
+            className="indicator-item badge rounded-full h-7 w-7"
+            onClick={() => setPopUp(null)}
+          >
+            X
+          </span>
+          {popUp}
+        </div>
+      )}
     </div>
   );
 }
