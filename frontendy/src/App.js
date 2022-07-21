@@ -1,6 +1,4 @@
 import { useState, useEffect, useContext } from "react";
-import io from "socket.io-client";
-import Login from "./components/Login";
 import { AuthContext } from "./utils/AuthProvider";
 import GameContainer from "./components/GameContainer";
 import Menu from "./components/Menu";
