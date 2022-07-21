@@ -65,6 +65,7 @@ io.use(wrap(passport.session()));
 
 io.use((socket, next) => {
   if (socket.request.user) {
+    console.log(socket.request.user._id);
     next();
   } else {
     next(new Error("unauthorized"));
@@ -81,11 +82,12 @@ io.on("connection", (socket) => {
   registerUserHandlers(io, socket);
 
   socket.on("disconnect", () => {
+    socket.disconnect();
     console.log("user disconnected");
   });
 });
 
-server.listen(4001, () => {
+server.listen(4002, () => {
   console.log(
     `application is running at: http://localhost:${process.env.PORT}`
   );

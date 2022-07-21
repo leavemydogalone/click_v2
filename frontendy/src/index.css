@@ -23,4 +23,14 @@ code {
     left: 50%;
     transform: translate(-50%, -50%);
   }
+  .theButton:disabled,
+  .theButton[disabled] {
+    --tw-border-opacity: 1;
+    border-color: grey;
+    --tw-bg-opacity: 1;
+    background-color: lightgrey;
+    --tw-text-opacity: 1;
+    color: hsl(var(--pc) / var(--tw-text-opacity));
+    filter: brightness(0.5);
+  }
 }
