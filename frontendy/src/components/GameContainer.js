@@ -4,15 +4,18 @@ import Character from "./Character";
 import grass from "../unlockables/backgrounds/layered-waves-haikei.svg";
 
 export default function GameContainer() {
-  const [clicked, setClicked] = useState(false);
+  const [animationClassName, setAnimationClassName] = useState("");
 
   return (
     <div
       className="flex flex-col justify-end items-center py-10 bg-cover bg-no-repeat bg-bottom"
       style={{ backgroundImage: `url(${grass}` }}
     >
-      <Character clicked={clicked} />
-      <TheButton setClicked={setClicked} />
+      <Character
+        animationClassName={animationClassName}
+        setAnimationClassName={() => setAnimationClassName("")}
+      />
+      <TheButton setAnimationClassName={() => setAnimationClassName("jump")} />
     </div>
   );
 }

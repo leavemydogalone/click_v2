@@ -3,13 +3,13 @@ import { socket } from "../utils/SocketProvider";
 import { AuthContext } from "../utils/AuthProvider";
 import { debounce } from "../helpers/buttonHelpers";
 
-export default function TheButton({ setClicked }) {
+export default function TheButton({ setAnimationClassName }) {
   const [buttonActive, setButtonActive] = useState(true);
   const { currentUser } = useContext(AuthContext);
 
   function handleClick() {
     socket.emit("click", currentUser);
-    setClicked((prev) => !prev);
+    setAnimationClassName();
     debounce(setButtonActive);
   }
 
