@@ -1,4 +1,4 @@
-export function debounce(setButtonActive, timeout = 5000) {
+export function debounce(setButtonActive, timeout = 900) {
   setButtonActive(false);
   setTimeout(() => {
     setButtonActive(true);

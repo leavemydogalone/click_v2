@@ -7,6 +7,7 @@ module.exports = (io, socket) => {
         socket.request.user._id,
         { $inc: { clicks: 1 } }
       );
+      socket.emit("number", currentUser.clicks);
     } catch (err) {
       console.log(err);
     }
