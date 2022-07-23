@@ -14,5 +14,7 @@ export default function TheNumber() {
     };
   }, []);
 
-  return <div className="select-none text-9xl z-0">{numberOfClicks}</div>;
+  return (
+    <div className="select-none text-2xl md:text-xl">{numberOfClicks}</div>
+  );
 }

@@ -39,7 +39,7 @@ export default function Menu() {
         </div>
       </div>
       <div className="navbar-center">
-        <a className="btn btn-ghost normal-case text-xl">Clicker</a>
+        <span clsssName="btn btn-ghost normal-case text-2xl">Clicker</span>
       </div>
       <div className="navbar-end">
         <button className="btn btn-ghost btn-circle">
