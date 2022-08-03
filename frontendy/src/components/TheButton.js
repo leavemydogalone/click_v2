@@ -18,7 +18,7 @@ export default function TheButton({ setAnimationClassName }) {
       <button
         disabled={!buttonActive}
         onClick={handleClick}
-        className="theButton btn btn-wide btn-primary "
+        className="theButton btn btn-wide btn-primary relative"
       >
         Click Me
       </button>

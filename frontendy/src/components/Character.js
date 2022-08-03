@@ -7,7 +7,7 @@ export default function Character({
   setAnimationClassName,
 }) {
   return (
-    <div className="w-1/4 char">
+    <div className="w-1/4 char relative">
       <Egg
         onAnimationEnd={() => setAnimationClassName()}
         className={animationClassName}
