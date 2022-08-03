@@ -10,7 +10,7 @@ export default function GameContainer() {
   // will need to create handlers for characters, associated animations, etc
 
   return (
-    <div className="flex flex-col justify-end items-center py-10 ">
+    <div className="flex flex-col justify-end items-center py-10 relative">
       <TheNumber />
       <div
         className="select-none background-container bg-cover bg-no-repeat bg-bottom absolute top-0 left-0 h-screen w-screen"
