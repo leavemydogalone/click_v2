@@ -15,7 +15,10 @@ export default function TheNumber() {
   }, []);
 
   return (
-    <div className="select-none text-[66vw] md:text-[46vw] leading-[0] text-stone-300">
+    <div
+      style={{ paddingBottom: "17vh" }}
+      className="select-none text-[45vw] md:text-[46vw] leading-[0] text-stone-300"
+    >
       {numberOfClicks}
     </div>
   );
