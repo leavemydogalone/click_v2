@@ -3,13 +3,6 @@ import { socket } from "../utils/SocketProvider";
 
 export default function TheNumber() {
   const [numberOfClicks, setNumberOfClicks] = useState(0);
-  const [rotation, setRotation] = useState("0deg");
-
-  //   going to rotate 90deg every 25 clicks
-  //   function determineRotaition() {
-  //     if (numberOfClicks % 25 === 0) {
-  //     }
-  //   }
 
   useEffect(() => {
     socket.on("number", (res) => {
