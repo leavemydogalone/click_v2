@@ -1,6 +1,12 @@
 const User = require("../models/User");
 
 module.exports = (io, socket) => {
+  const checkAward = async () => {
+    // check if the clicks meet the criteria for an award
+    // if it meets the required number, emit award
+    // all logic for handling the normal pop ups will be
+    // in front end
+  };
   const updateClick = async () => {
     try {
       // increment user clicks by 1
