@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { login } from "../helpers/loginHelpers";
+import { login, register } from "../helpers/loginHelpers";
 import { AuthContext } from "../utils/AuthProvider";
 
 export default function Login({ setPopUp }) {
@@ -7,6 +7,7 @@ export default function Login({ setPopUp }) {
   const [password, setPassword] = useState("dog2");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [typeOfSubmit, setTypeOfSubmit] = useState("");
   const [success, setSuccess] = useState(false);
 
   const { setCurrentUser } = useContext(AuthContext);
@@ -62,7 +63,9 @@ export default function Login({ setPopUp }) {
           }}
         />
         <div className="warning"></div>
-        <button className="btn block mt-6">Login</button>
+        <button className="btn block mt-6 inline-block">Login</button>
+        <button className="btn block ml-2 mt-2 inline-block">Register</button>
+
         {loading && (
           <div className="thing absolute w-full h-full left-0 top-0 bg-white opacity-50">
             Logging In...

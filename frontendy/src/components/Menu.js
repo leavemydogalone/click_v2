@@ -30,14 +30,14 @@ export default function Menu() {
           >
             <li>
               <span onClick={() => setPopUp(<Login setPopUp={setPopUp} />)}>
-                Login
+                Login/Register
               </span>
             </li>
           </ul>
         </div>
       </div>
       <div className="navbar-center">
-        <span clsssName="btn btn-ghost normal-case text-2xl">Clicker</span>
+        <span className="normal-case text-2xl">Clicker</span>
       </div>
       <div className="navbar-end"></div>
       {/* conditionally rendered if there is a popup */}

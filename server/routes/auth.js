@@ -2,7 +2,6 @@ const router = require("express").Router();
 const passport = require("passport");
 const genPassword = require("../lib/passwordUtils").genPassword;
 const User = require("../models/User");
-const connection = require("../config/database");
 
 router.post("/login", passport.authenticate("local"), (req, res, next) => {
   console.log("login success");
