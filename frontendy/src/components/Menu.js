@@ -4,8 +4,6 @@ import Login from "./Login";
 export default function Menu() {
   const [popUp, setPopUp] = useState(null);
 
-  function HandleLoginSuccess() {}
-
   return (
     <div className="navbar bg-base-100 z-30">
       <div className="navbar-start">
