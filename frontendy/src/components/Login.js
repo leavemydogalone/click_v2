@@ -20,7 +20,7 @@ export default function Login({ setPopUp }) {
     }
   }, [success]);
 
-  const handleSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
 
@@ -35,9 +35,25 @@ export default function Login({ setPopUp }) {
     setLoading(false);
   };
 
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    setTypeOfSubmit("reg");
+    setLoading(true);
+
+    const registered = await register(
+      username,
+      password,
+      setCurrentUser,
+      setError,
+      setSuccess
+    );
+
+    setLoading(false);
+  };
+
   return (
     <>
-      <form className="loginForm p-8 relative" onSubmit={handleSubmit}>
+      <form className="loginForm p-8 relative">
         <label htmlFor="username" className="label block">
           Username
         </label>
@@ -63,17 +79,25 @@ export default function Login({ setPopUp }) {
           }}
         />
         <div className="warning"></div>
-        <button className="btn block mt-6 inline-block">Login</button>
-        <button className="btn block ml-2 mt-2 inline-block">Register</button>
+        <button onClick={handleLogin} className="btn block mt-6 inline-block">
+          Login
+        </button>
+        <button
+          onClick={handleRegister}
+          // onClick={(e) => console.log("reg")}
+          className="btn btn-primary block ml-2 mt-2 inline-block"
+        >
+          Register
+        </button>
 
         {loading && (
           <div className="thing absolute w-full h-full left-0 top-0 bg-white opacity-50">
-            Logging In...
+            {typeOfSubmit === "reg" ? "Registering..." : "Logging In..."}
           </div>
         )}
         {success && (
           <div className="position-center-absolute h-[100%] w-[100%] flex items-center justify-center bg-white ">
-            Login Success!
+            {typeOfSubmit === "reg" ? "Register Success!" : " Login Success!"}
           </div>
         )}
       </form>

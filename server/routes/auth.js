@@ -8,9 +8,11 @@ router.post("/login", passport.authenticate("local"), (req, res, next) => {
   req.session.authenticated = true;
 
   res.status(201).json({ userId: req.session.passport.user });
+  // console.log(req.session);
 });
 
 router.post("/register", async (req, res, next) => {
+  console.log("register started");
   const saltHash = genPassword(req.body.password);
 
   const salt = saltHash.salt;
@@ -26,7 +28,12 @@ router.post("/register", async (req, res, next) => {
   //   save user to mongodb or send error on failure
   try {
     const savedUser = await newUser.save();
-    res.status(201).json(savedUser);
+    passport.authenticate("local")(req, res, function () {});
+    // res.status(201).json(savedUser);
+    console.log(req.session.passport.user);
+    console.log("register success");
+    req.session.authenticated = true;
+    res.status(201).json({ userId: req.session.passport.user });
   } catch (err) {
     res.status(500).json(err);
   }
