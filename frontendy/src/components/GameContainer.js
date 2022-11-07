@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { socket } from "../utils/SocketProvider";
 import TheButton from "./TheButton";
 import Character from "./Character";
 import TheNumber from "./TheNumber";

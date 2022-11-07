@@ -2,10 +2,14 @@ const User = require("../models/User");
 
 module.exports = (io, socket) => {
   const checkAward = async () => {
+    const currentUser = await User.findById(socket.request.user._id);
     // check if the clicks meet the criteria for an award
     // if it meets the required number, emit award
     // all logic for handling the normal pop ups will be
     // in front end
+    if (currentUser.clicks % 100 === 0) {
+      socket.emit("achievement", clicks / 100);
+    }
   };
   const updateClick = async () => {
     try {
@@ -21,5 +25,9 @@ module.exports = (io, socket) => {
       console.log(err);
     }
   };
-  socket.on("click", updateClick);
+  const clickHandlers = () => {
+    updateClick();
+    checkAward();
+  };
+  socket.on("click", clickHandlers);
 };
