@@ -28,12 +28,13 @@ router.post("/register", async (req, res, next) => {
   //   save user to mongodb or send error on failure
   try {
     const savedUser = await newUser.save();
-    passport.authenticate("local")(req, res, function () {});
+    passport.authenticate("local")(req, res, function () {
+      req.session.authenticated = true;
+      res.status(201).json({ userId: req.session.passport.user });
+      console.log(req.session.passport.user);
+    });
     // res.status(201).json(savedUser);
-    console.log(req.session.passport.user);
-    console.log("register success");
-    req.session.authenticated = true;
-    res.status(201).json({ userId: req.session.passport.user });
+    // console.log("register success");
   } catch (err) {
     res.status(500).json(err);
   }
