@@ -3,8 +3,8 @@ import { login, register } from "../helpers/loginHelpers";
 import { AuthContext } from "../utils/AuthProvider";
 
 export default function Login({ setPopUp }) {
-  const [username, setUsername] = useState("guydog");
-  const [password, setPassword] = useState("dog2");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [typeOfSubmit, setTypeOfSubmit] = useState("");
