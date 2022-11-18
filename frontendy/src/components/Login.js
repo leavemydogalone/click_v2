@@ -10,6 +10,7 @@ export default function Login({ setPopUp }) {
   const [typeOfSubmit, setTypeOfSubmit] = useState("");
   const [success, setSuccess] = useState(false);
 
+  console.log("hi");
   const { setCurrentUser } = useContext(AuthContext);
 
   useEffect(() => {
