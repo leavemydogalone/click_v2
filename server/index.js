@@ -87,7 +87,5 @@ io.on("connection", (socket) => {
 });
 
 server.listen(4002, () => {
-  console.log(
-    `application is running at: http://localhost:${process.env.PORT}`
-  );
+  console.log(`application is running at: ${process.env.PORT}`);
 });

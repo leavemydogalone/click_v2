@@ -1,0 +1,12 @@
+{
+  "headers": [
+    {
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://clickv2-production.up.railway.app/"
+        }
+      ]
+    }
+  ]
+}
