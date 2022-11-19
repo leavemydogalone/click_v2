@@ -1,7 +1,6 @@
 // import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
-export const socket = io(process.env.REACT_APP_SERVER_PORT, {
-  // origin: process.env.REACT_APP_CORS_ORIGIN,
+export const socket = io(process.env.REACT_APP_SOCKET_PORT, {
   withCredentials: true,
 });
 
