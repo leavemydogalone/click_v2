@@ -1,6 +1,6 @@
 // import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
-export const socket = io(process.env.REACT_APP_SOCKET_PORT, {
+export const socket = io(process.env.REACT_APP_SERVER_PORT, {
   withCredentials: true,
 });
 
