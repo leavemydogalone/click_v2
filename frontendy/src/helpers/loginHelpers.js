@@ -7,7 +7,7 @@ export async function login(
 ) {
   try {
     const rawResponse = await fetch(
-      `${process.env.REACT_APP_SERVER_PORT}auth/login`,
+      `${process.env.REACT_APP_SERVER_PORT}/auth/login`,
       {
         method: "POST",
         mode: "cors",
