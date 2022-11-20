@@ -8,7 +8,6 @@ export const socket = io(process.env.REACT_APP_SERVER_PORT, {
   },
 });
 
-// // heres a note to update my vercel app
 // export const SockContext = React.createContext();
 
 // // should rename to make it more generic and have the name work with votes as well

@@ -23,6 +23,7 @@ router.post("/register", async (req, res, next) => {
     username: req.body.username,
     hash: hash,
     salt: salt,
+    clicks: 0,
   });
 
   //   save user to mongodb or send error on failure

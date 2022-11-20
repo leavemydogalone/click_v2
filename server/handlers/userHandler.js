@@ -18,7 +18,7 @@ module.exports = (io, socket) => {
       );
       // after user is updated, send the user clicks
       // back to client to update counter
-      socket.emit("number", currentUser.clicks);
+      socket.emit("number", currentUser.clicks + 1);
     } catch (err) {
       console.log(err);
     }

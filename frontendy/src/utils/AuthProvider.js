@@ -10,13 +10,11 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
     // for (let key in loggedInUser) console.log(loggedInUser[key]);
-    console.log(loggedInUser);
     if (loggedInUser) {
       setCurrentUser(loggedInUser);
     }
   }, []);
 
-  console.log(currentUser);
   return (
     <AuthContext.Provider value={{ currentUser, setCurrentUser }}>
       {children}
