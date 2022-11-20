@@ -28,6 +28,7 @@ export async function login(
     localStorage.setItem("user", data.userId);
     setSuccess(true);
     console.log("current user " + data.userId + " has logged in");
+    window.location.reload();
   } catch (err) {
     setError(err);
     console.log(err);
@@ -64,6 +65,7 @@ export async function register(
     localStorage.setItem("user", data.userId);
     setSuccess(true);
     console.log("current user " + data + " has registered");
+    window.location.reload();
   } catch (err) {
     setError(err);
     console.log(err);
