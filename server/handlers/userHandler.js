@@ -25,7 +25,7 @@ module.exports = (io, socket) => {
   };
   const clickHandlers = () => {
     updateClick();
-    checkAward();
+    // checkAward();
   };
   socket.on("click", clickHandlers);
 };

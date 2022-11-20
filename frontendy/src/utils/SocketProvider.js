@@ -3,6 +3,9 @@ import React, { useState, useEffect, useContext } from "react";
 import io from "socket.io-client";
 export const socket = io(process.env.REACT_APP_SERVER_PORT, {
   withCredentials: true,
+  extraHeaders: {
+    "my-custom-header": "abcd",
+  },
 });
 
 // // heres a note to update my vercel app

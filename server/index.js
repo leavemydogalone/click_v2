@@ -52,6 +52,9 @@ app.use("/auth", authRoute);
 
 const io = require("socket.io")(server, {
   cors: corsOptions,
+  extraHeaders: {
+    "my-custom-header": "abcd",
+  },
 });
 
 // wrap required to use middleware with socket.io
