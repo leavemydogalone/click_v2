@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Login from "./Login";
+import { AuthContext } from "../utils/AuthProvider";
 
 export default function Menu() {
   const [popUp, setPopUp] = useState(null);
+  const { currentUser } = useContext(AuthContext);
+
+  let classList = currentUser
+    ? "dropdown"
+    : "dropdown tooltip tooltip-open tooltip-right tooltip-secondary";
 
   return (
     <div className="navbar bg-base-100 z-30">
       <div className="navbar-start">
-        <div className="dropdown">
+        <div className={classList} data-tip="Please Sign In">
           <label tabIndex="0" className="btn btn-ghost btn-circle">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -24,6 +30,7 @@ export default function Menu() {
               />
             </svg>
           </label>
+
           <ul
             tabIndex="0"
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"

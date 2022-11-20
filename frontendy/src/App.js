@@ -3,7 +3,6 @@ import { AuthContext } from "./utils/AuthProvider";
 import GameContainer from "./components/GameContainer";
 import Menu from "./components/Menu";
 import { socket } from "./utils/SocketProvider";
-// Top level. Will handle user info and connecting to the socket.
 
 function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);

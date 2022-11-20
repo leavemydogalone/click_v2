@@ -8,13 +8,11 @@ router.post("/login", passport.authenticate("local"), (req, res, next) => {
   req.session.authenticated = true;
 
   res.status(201).json({ userId: req.session.passport.user });
-  // console.log(req.session);
 });
 
 router.post("/register", async (req, res, next) => {
   console.log("register started");
   const saltHash = genPassword(req.body.password);
-
   const salt = saltHash.salt;
   const hash = saltHash.hash;
 
@@ -34,8 +32,6 @@ router.post("/register", async (req, res, next) => {
       res.status(201).json({ userId: req.session.passport.user });
       console.log(req.session.passport.user);
     });
-    // res.status(201).json(savedUser);
-    // console.log("register success");
   } catch (err) {
     res.status(500).json(err);
   }
