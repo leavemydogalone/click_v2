@@ -1,1 +1,3 @@
-version 2 of my clicker game project. this time using socket.io and will be using express session for security
+Cliker - The super "fun" clicking game!
+
+Click the button and watch the number go up!
