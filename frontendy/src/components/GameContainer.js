@@ -10,15 +10,20 @@ import ExplosionContainer from "./ExplosionContainer";
 export default function GameContainer() {
   const [animationClassName, setAnimationClassName] = useState("");
   const [explosionList, setExplosionList] = useState([]);
+  const [explosionDirection, setExplosionDirection] = useState("left");
   // will need to create handlers for characters, associated animations, etc
 
   function handleClick() {
     setAnimationClassName("jump");
+    setExplosionDirection((prev) => (prev === "left" ? "right" : "left"));
     setExplosionList((prev) => [
       ...prev,
-      <Explosion key={Math.random(1000)} />,
+      <Explosion
+        key={Math.random(1000)}
+        explosionDirection={explosionDirection}
+      />,
     ]);
-    removeExplosion();
+    // removeExplosion();
   }
 
   function removeExplosion() {
