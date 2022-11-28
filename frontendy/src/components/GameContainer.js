@@ -33,7 +33,7 @@ export default function GameContainer() {
 
   return (
     <div className="flex flex-col justify-end items-center py-10 relative overflow-hidden">
-      <TheNumber />
+      <TheNumber animationClassName={animationClassName} />
       <div
         className="select-none background-container bg-cover bg-no-repeat bg-bottom absolute top-0 left-0 h-screen w-screen"
         style={{ backgroundImage: `url(${grass}` }}
