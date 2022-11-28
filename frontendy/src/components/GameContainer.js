@@ -18,12 +18,13 @@ export default function GameContainer() {
       ...prev,
       <Explosion key={Math.random(1000)} />,
     ]);
-    // removeExplosion();
+    removeExplosion();
   }
 
   function removeExplosion() {
     setTimeout(() => {
-      setExplosionList((prev) => prev.shift());
+      //need to rework below, was causing errors
+      setExplosionList((prev) => prev.slice(1));
     }, 3000);
   }
 

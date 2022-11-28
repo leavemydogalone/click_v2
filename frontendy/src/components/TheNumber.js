@@ -16,7 +16,13 @@ export default function TheNumber() {
 
   return (
     <div
-      style={{ paddingBottom: "17vh" }}
+      style={{
+        paddingBottom: "17vh",
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+      }}
       className="select-none text-[45vw] md:text-[46vw] leading-[0] text-stone-300"
     >
       {numberOfClicks}

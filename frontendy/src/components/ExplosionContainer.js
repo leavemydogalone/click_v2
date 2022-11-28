@@ -4,7 +4,7 @@ export default function ExplosionContainer(explosionList) {
   if (explosionList.explosionList.length < 1) return <div>&nbsp;</div>;
 
   return (
-    <div>
+    <div style={{ height: "0px" }}>
       {explosionList &&
         explosionList.explosionList.map((explosion, index) => explosion)}
     </div>
