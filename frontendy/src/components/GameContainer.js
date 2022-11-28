@@ -11,7 +11,6 @@ export default function GameContainer() {
   const [animationClassName, setAnimationClassName] = useState("");
   const [explosionList, setExplosionList] = useState([]);
   const [explosionDirection, setExplosionDirection] = useState("left");
-  // will need to create handlers for characters, associated animations, etc
 
   function handleClick() {
     setAnimationClassName("jump");
@@ -28,7 +27,6 @@ export default function GameContainer() {
 
   function removeExplosion() {
     setTimeout(() => {
-      //need to rework below, was causing errors
       setExplosionList((prev) => prev.slice(1));
     }, 3000);
   }
