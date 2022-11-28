@@ -23,7 +23,7 @@ export default function GameContainer() {
         explosionDirection={explosionDirection}
       />,
     ]);
-    // removeExplosion();
+    removeExplosion();
   }
 
   function removeExplosion() {
