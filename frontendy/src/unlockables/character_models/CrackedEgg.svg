@@ -1,0 +1,12 @@
+<svg viewBox="-17 0 100 100" xmlns="http://www.w3.org/2000/svg" version="1.1" >
+  <defs>
+    <linearGradient id="sw-gradient" x1="0" x2="1" y1="1" y2="0">
+      <stop id="stop1" stop-color="rgba(248, 117, 55, 1)" offset="0"></stop>
+      <stop id="stop2" stop-color="rgba(255, 255, 255, 1)" offset="1"></stop>
+    </linearGradient>
+  </defs>
+  <ellipse  style="fill: rgb(0 0 0);" cx="33.641" cy="50.556" rx="15.703" ry="20.371"></ellipse>
+  <ellipse  style="fill: #484848;" cx="34.065" cy="48.647" rx="6.366" ry="9.973"></ellipse>
+  <path id='bot' d="M 65.741 42.129 C 65.741 42.129 67.592 56.018 65.278 61.573 C 62.964 67.128 65.278 78.704 36.111 87.037 C 6.944 95.37 -2.778 53.704 -1.389 50.463 L 18.519 53.241 L 35.648 43.056 L 46.296 48.611 L 65.741 42.129 Z" fill="url(#sw-gradient)"></path>
+  <path id='cap' d="M -1.584 51.83 C -1.584 51.83 1.489 23.395 26.954 18.302 C 52.417 13.209 62.076 34.854 62.076 34.854 L 49.783 42.493 L 34.417 35.702 L 17.294 46.737 L -1.584 51.83 Z" fill="url(#sw-gradient)"></path>
+</svg>

@@ -44,3 +44,17 @@
 .theNumber {
   transition: transform 0.1s ease-out;
 }
+
+.jump #cap {
+  animation: capMove 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) alternate;
+  animation-iteration-count: 2;
+}
+
+@keyframes capMove {
+  from {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+  to {
+    transform: rotate(-12deg) translate3d(-10px, -1px, 0px);
+  }
+}

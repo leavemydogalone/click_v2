@@ -16,11 +16,12 @@ export default function TheButton({ setAnimationClassName }) {
   return (
     <>
       <button
-        disabled={!buttonActive}
+        disabled={!buttonActive || !currentUser}
         onClick={handleClick}
         className="theButton btn btn-wide btn-primary relative"
       >
-        Click Me
+        {currentUser && "Click Me"}
+        {!currentUser && "Please Sign In"}
       </button>
     </>
   );
