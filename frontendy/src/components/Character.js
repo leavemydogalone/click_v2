@@ -22,14 +22,13 @@ export default function Character({
 
   return (
     <div className="w-1/4 char relative">
-      {clicks < 15 && (
+      {clicks < 10 && (
         <Egg
           onAnimationEnd={() => setAnimationClassName()}
           className={animationClassName}
         />
       )}
-
-      {clicks > 15 && (
+      {clicks >= 10 && (
         <CrackedEgg
           onAnimationEnd={() => setAnimationClassName()}
           className={animationClassName}

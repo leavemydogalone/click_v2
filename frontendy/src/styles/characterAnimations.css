@@ -37,7 +37,7 @@
   }
   to {
     opacity: 0;
-    filter: hue-rotate(90deg);
+    /* filter: hue-rotate(90deg); */
   }
 }
 

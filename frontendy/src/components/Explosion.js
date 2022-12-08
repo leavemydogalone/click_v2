@@ -17,7 +17,7 @@ export default function Explosion({ explosionDirection }) {
     transition: "all 1s ease-in-out",
     position: "absolute",
     fontSize: "200%",
-    filter: `hue-rotate(${hue}deg)`,
+    // filter: `hue-rotate(${hue}deg)`,
   };
   return (
     <div style={styles} className="arc">
