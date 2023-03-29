@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { socket } from "../utils/SocketProvider";
 import { ReactComponent as Egg } from "../unlockables/character_models/Egg.svg";
 import { ReactComponent as CrackedEgg } from "../unlockables/character_models/CrackedEgg.svg";
@@ -24,25 +24,51 @@ export default function Character({
   return (
     <div className="w-1/4 char relative">
       {clicks < 10 && (
-        <Egg
-          onAnimationEnd={() => setAnimationClassName()}
-          className={animationClassName}
-        />
+        <>
+          <AboveText text="Click IT!!" />
+          <Egg
+            onAnimationEnd={() => setAnimationClassName()}
+            className={animationClassName}
+          />
+        </>
       )}
-      {(clicks >= 10 && clicks < 20) && (
-        <CrackedEgg
-          onAnimationEnd={() => setAnimationClassName()}
-          className={animationClassName}
-        />
+      {clicks >= 10 && clicks < 20 && (
+        <>
+          <AboveText text="A Few More!" />
+          <CrackedEgg
+            onAnimationEnd={() => setAnimationClassName()}
+            className={animationClassName}
+          />
+        </>
       )}
       {clicks >= 20 && (
-        <img src={Penguin}
-        alt='its a penguin!'
-        style={{maxWidth: '90%', margin: '0 auto 30px'}}
-          onAnimationEnd={() => setAnimationClassName()}
-          className={animationClassName}
-        />
+        <>
+          <AboveText text="You Win!" />
+          <img
+            src={Penguin}
+            alt="its a penguin!"
+            style={{ maxWidth: "90%", margin: "0 auto 30px" }}
+            onAnimationEnd={() => setAnimationClassName()}
+            className={animationClassName}
+          />
+        </>
       )}
     </div>
   );
 }
+
+let AboveText = ({ text }) => {
+  return (
+    <h4
+      style={{
+        textAlign: "center",
+        fontSize: "clamp(16px, 5vmin, 45px)",
+        textShadow: "1px 1px 0px #d6d3d1",
+        color: "#fa9801",
+        fontWeight: "bold",
+      }}
+    >
+      {text}
+    </h4>
+  );
+};
