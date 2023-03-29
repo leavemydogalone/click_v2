@@ -8,7 +8,7 @@ export default function Explosion({ explosionDirection }) {
   let hue = Math.floor(Math.random() * 360);
 
   useEffect(() => {
-    setTransform(`translate(${direction}, -${height}px)`);
+    setTransform(`translate(${direction}, -${height}px) rotate(90deg) scale(1.3)`);
   }, []);
 
   let styles = {
@@ -16,8 +16,8 @@ export default function Explosion({ explosionDirection }) {
     transform: transform,
     transition: "all 1s ease-in-out",
     position: "absolute",
-    fontSize: "200%",
-    // filter: `hue-rotate(${hue}deg)`,
+    fontSize: "80px",
+    filter: `hue-rotate(${hue}deg)`,
   };
   return (
     <div style={styles} className="arc">
