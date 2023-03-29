@@ -36,7 +36,7 @@ export default function GameContainer() {
       <TheNumber animationClassName={animationClassName} />
       <div
         className="select-none background-container bg-cover bg-no-repeat bg-bottom absolute top-0 left-0 h-screen w-screen"
-        style={{ backgroundImage: `url(${grass}` }}
+        style={{ backgroundImage: `url(${grass}`, opacity: ".9" }}
       ></div>
       <ExplosionContainer explosionList={explosionList} />
       <Character

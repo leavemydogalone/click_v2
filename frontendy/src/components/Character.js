@@ -23,27 +23,35 @@ export default function Character({
 
   return (
     <div className="w-1/4 char relative">
-      {clicks < 10 && (
+      {clicks < 7 && (
         <>
-          <AboveText text="Click IT!!" />
           <Egg
             onAnimationEnd={() => setAnimationClassName()}
             className={animationClassName}
           />
         </>
       )}
-      {clicks >= 10 && clicks < 20 && (
+      {clicks >= 7 && clicks < 14 && (
         <>
-          <AboveText text="A Few More!" />
           <CrackedEgg
             onAnimationEnd={() => setAnimationClassName()}
             className={animationClassName}
           />
         </>
       )}
-      {clicks >= 20 && (
+      {clicks >= 14 && (
         <>
-          <AboveText text="You Win!" />
+          <h4
+            style={{
+              textAlign: "center",
+              fontSize: "clamp(16px, 5vmin, 45px)",
+              textShadow: "1px 1px 0px #d6d3d1",
+              color: "#fa9801",
+              fontWeight: "bold",
+            }}
+          >
+            You Win!
+          </h4>
           <img
             src={Penguin}
             alt="its a penguin!"
@@ -56,19 +64,3 @@ export default function Character({
     </div>
   );
 }
-
-let AboveText = ({ text }) => {
-  return (
-    <h4
-      style={{
-        textAlign: "center",
-        fontSize: "clamp(16px, 5vmin, 45px)",
-        textShadow: "1px 1px 0px #d6d3d1",
-        color: "#fa9801",
-        fontWeight: "bold",
-      }}
-    >
-      {text}
-    </h4>
-  );
-};
