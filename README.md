@@ -1,4 +1,6 @@
-Cliker - The super "fun" clicking game! Click 15 and 30 times to for a "fun" surprise.
+Clicker - The super "fun" clicking game! Click 15 and 30 times to for a "fun" surprise.
+
+[Link to App](https://worthy-bridge-production.up.railway.app/);
 
 Frontend -
 React - DaisyUI - Socket.io
