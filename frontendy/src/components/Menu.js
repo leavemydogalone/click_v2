@@ -33,10 +33,14 @@ export default function Menu() {
 
           <ul
             tabIndex="0"
+            style={{ background: "white" }}
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <span onClick={() => setPopUp(<Login setPopUp={setPopUp} />)}>
+              <span
+                onClick={() => setPopUp(<Login setPopUp={setPopUp} />)}
+                style={{ color: "black" }}
+              >
                 Login/Register
               </span>
             </li>
@@ -49,7 +53,10 @@ export default function Menu() {
       <div className="navbar-end"></div>
       {/* conditionally rendered if there is a popup */}
       {popUp && (
-        <div className="card indicator overflow-visible w-96 bg-base-100 shadow-xl max-w-screen position-center-absolute">
+        <div
+          className="card indicator overflow-visible w-96 bg-base-100 shadow-xl max-w-screen position-center-absolute"
+          style={{ border: "3px solid" }}
+        >
           <span
             className="indicator-item badge rounded-full h-7 w-7"
             onClick={() => setPopUp(null)}
