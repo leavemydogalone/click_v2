@@ -23,9 +23,14 @@ module.exports = (io, socket) => {
       console.log(err);
     }
   };
+  const handleJoin = async () => {
+    const currentUser = await User.findById(socket.request.user._id);
+    socket.emit("number", currentUser.clicks);
+  };
   const clickHandlers = () => {
     updateClick();
     // checkAward();
   };
   socket.on("click", clickHandlers);
+  socket.on("join", handleJoin);
 };

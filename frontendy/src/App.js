@@ -17,6 +17,7 @@ function App() {
       console.log("socket disconnected");
     });
 
+    socket.emit("join");
     return () => {
       socket.off("connect");
       socket.off("disconnect");
